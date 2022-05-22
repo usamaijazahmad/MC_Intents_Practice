@@ -7,12 +7,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
     Button btn;
     Button btn1;
     Button btn2;
+    Button btn3;
+    EditText edittext;
+
+    public static final String str="com.example.mc_app.example.str";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
         btn=findViewById(R.id.btn);
         btn1=findViewById(R.id.btn1);
         btn2=findViewById(R.id.btn2);
+        btn3=findViewById(R.id.btn3);
+        edittext=findViewById(R.id.edittext);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,6 +57,15 @@ public class MainActivity extends AppCompatActivity {
                 if(intent.resolveActivity(getPackageManager())!=null) {
                     startActivity(intent);
                 }
+            }
+        });
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,MainActivity2.class);
+                String message=edittext.getText().toString();
+                intent.putExtra(str,message);
+                startActivity(intent);
             }
         });
     }
